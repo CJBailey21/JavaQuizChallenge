@@ -1,72 +1,112 @@
+//variables
 var wrapperEl = document.querySelector('.wrapper')
 var timerEl = document.querySelector('.time')
 var btn = document.querySelector('.start')
+var qNum = 0
+var score = 0
+//arrays for both the leaders initials and score, questions with the anwsers and correct anwser
+var leaders = [
+    
+]
 
 var questions = [
     {
         question: 'What is the shorthand for Javascript?', 
-        anwser: {
-            a: 'js',
-            b: 'css',
-            c: 'html'
-        },
+        anwser: [{
+            a: 'js'},
+            {b: 'css'},
+            {c: 'html'
+    }],
         correct: 'a'
     },
     {
         question: 'Arrays in Javascript can be used to store what?',
-        anwser: {
+        anwser: [{
             a: 'Numbers, strings, and other arrays',
             b: 'Booleans',
             C: 'both a and c'
-        },
+        }],
         correct: 'c'
     },
     {
         question: 'Commonly used data types do not include?',
-        anwser: {
+        anwser: [{
             a: 'Booleans',
             b: 'strings',
             c: 'prompts'
-        },
+        }],
         correct: 'c'
-    },
-    {
-        question: '',
-        anwser: {
-            a: '',
-            b: '',
-            c: ''
-        },
-        correct: ''
-    },
-    {
-        question: '',
-        anwser: {
-            a: '',
-            b: '',
-            c: ''
-        },
-        correct: ''
     }
 ]
 
 btn.addEventListener('click', start)
-console.log(questions[0].question)
+//function to set the questions on the page
+function populateQuestion() {
+    console.log(questions);
+    document.getElementById('question').innerText = questions[qNum].question
+    document.getElementById('an1').innerText = questions[qNum].anwser.a
+    document.getElementById('an2').innerText = questions[qNum].anwser.b
+    document.getElementById('an3').innerText = questions[qNum].anwser.c
+}
+//function to move onto the next question 
+function moveOn(clickedAnwser) {
+    qNum++;
+    if (qNum >= questions.length) {
+        endQuiz()
+    }
+    populateQuestion()  
+}
+//function for scoreboard and time lost for wrong anwsers
+function scoreCard(clickedAnwser) {
+    if (questions[qNum].correct == clickedAnwser) {
+        score++;
+    } else {
+        timer--;
+    }
+}
+//end of game reset
+function reset() {
+    qNum = 0
+    timer = 60
+    score = 0
+    document.getElementById('question').innerText = ''
+    document.getElementById('an1').innerText = ''
+    document.getElementById('an2').innerText = ''
+    document.getElementById('an3').innerText = ''
+    document.querySelector('.questions').style="display: none"
+}
+//ends the quiz and runs the function to reset and add person to scoreboard
+function endQuiz() {
+    alert(`congrats! you scored ${score}`)
+    //add score to local storage
+    addPersonToScoreboard()
+    clearInterval(startTimer) 
+    reset()
+}
 
+function addPersonToScoreboard() {
+    var initials = prompt('Enter initials here')
+    leaders.push({
+        initials: initials,
+        score: score
+    })
+}
+
+//function to run timer
 
 function startTimer()
 {
-    var timer = 10;
+    var timer = 60;
     setInterval(function() {
         timer--;
         if (timer >= 0) {
             span = document.getElementById('timer');
             span.innerHTML = timer;
         }
-        if (timer === 0) {
+        if (timer <= 0) {
             document.querySelector('.timer').style = 'color: red;'
             alert("There's no time!");
-            clearInterval(timer);
+            clearInterval(startTimer);
         }
       }, 1000);
 }
@@ -74,7 +114,9 @@ function startTimer()
 function start()
 {
     document.querySelector('.timer').style="color: green;";
+    document.querySelector('.questions').style="display: flex"
     startTimer();
+    populateQuestion();
 };
 
 // for (var i = 0; i < questions.length; i++) {

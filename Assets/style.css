@@ -1,0 +1,56 @@
+/* universal */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global */
+
+body {
+    background-color: #000;
+}
+
+
+/* custom */
+.mainDiv {
+    display: flex;
+}
+
+.container {
+    display: flex;
+    padding: 15px;
+    color: #CE1141;
+    justify-content: center;
+    width: 768px;
+    max-width: 100%;
+}
+
+.questions {
+    display: none;
+}
+
+.time {
+    justify-content: center;
+}
+
+.wrapper {
+    justify-content: center;
+}
+
+.question {
+    justify-content: center;
+}
+
+.anwser {
+    border: solid 1px;
+    border-color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+    justify-content: center;
+}
+
+.anwser:hover {
+    border-color: #CE1141;
+}
+

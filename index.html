@@ -8,13 +8,48 @@
     <link rel="stylesheet" href="Assets/style.css">
 </head>
 <body>
-    <section class="time"></section>
-    <Div class="wrapper">
-        <button class="start">
-            Start Quiz
-        </button>
-        <div class="timer">Timer:&nbsp;<span id="timer">60</span>&nbsp;sec.</div>
-    </Div>
+    <div id="mainDiv">
+
+        <section class="time container">
+            <Div class="wrapper">
+
+                <button class="start">
+                    Start Quiz
+                </button>
+
+                <div class="timer">
+                Timer:&nbsp;<span id="timer">60</span>&nbsp;sec.
+                </div>
+
+            </div>
+        </section>
+
+        <section class="questions container">
+
+            <div id="question" class="question">
+
+                <div id="anwser-wrapper" class="anwser">
+                    <button id="an1" class="anwser"></button>
+                    <button id="an2" class="anwser"></button>
+                    <button id="an3" class="anwser"></button>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="scoreboard container">
+
+            <div class="score">
+                leader
+                <ul>
+                    <li></li>
+                </ul>
+            </div>
+
+        </section>
+
+    </div>
     <script src="assets/script.js"></script>
 </body>
 </html>
