@@ -2,6 +2,9 @@
 var wrapperEl = document.querySelector('.wrapper')
 var timerEl = document.querySelector('.time')
 var btn = document.querySelector('.start')
+var an1Btn = document.querySelector('#an1')
+var an2Btn = document.querySelector('#an2')
+var an3Btn = document.querySelector('#an3')
 var qNum = 0
 var score = 0
 //arrays for both the leaders initials and score, questions with the anwsers and correct anwser
@@ -12,11 +15,11 @@ var leaders = [
 var questions = [
     {
         question: 'What is the shorthand for Javascript?', 
-        anwser: [{
-            a: 'js'},
-            {b: 'css'},
-            {c: 'html'
-    }],
+        anwser: {
+            a: 'js',
+            b: 'css',
+            c: 'html'
+        },
         correct: 'a'
     },
     {
@@ -39,7 +42,12 @@ var questions = [
     }
 ]
 
+//event listeners for buttons
 btn.addEventListener('click', start)
+an1Btn.addEventListener('click', moveOn)
+an2Btn.addEventListener('click', moveOn)
+an3Btn.addEventListener('click', moveOn)
+
 //function to set the questions on the page
 function populateQuestion() {
     console.log(questions);
@@ -50,7 +58,9 @@ function populateQuestion() {
 }
 //function to move onto the next question 
 function moveOn(clickedAnwser) {
+    clickedAnwser()
     qNum++;
+    scoreCard()
     if (qNum >= questions.length) {
         endQuiz()
     }

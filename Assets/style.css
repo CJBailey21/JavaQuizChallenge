@@ -28,6 +28,7 @@ body {
 
 .questions {
     display: none;
+    flex-direction: column;
 }
 
 .time {
